@@ -11,12 +11,15 @@ namespace WhiteLagoon.Infrastructure.Repositories
     public class UnitOfWork : IUnitOfWork
     {
         public ApplicationDbContext _dbContext { set; get; }
-        public IRepository VillaRepository {  get; private set; }
+        public IVillaRepository VillaRepository {  get; private set; }
+
+        public IVillaNumberRepository VillaNumberRepository { get; private set; }
 
         public UnitOfWork(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
             VillaRepository = new VillaRepository(dbContext);
+            VillaNumberRepository = new VillaNumberRepository(dbContext);
         }
         public async Task SaveAsync()
         {

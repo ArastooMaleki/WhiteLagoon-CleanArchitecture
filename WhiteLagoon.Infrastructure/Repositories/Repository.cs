@@ -49,7 +49,7 @@ namespace WhiteLagoon.Infrastructure.Repositories
             return query.ToList();
         }
 
-        public async Task<Villa> GetAsync(Expression<Func<Villa, bool>>? filter = null, bool tracked = false)
+        public async Task<Villa?> GetAsync(Expression<Func<Villa, bool>>? filter = null, bool tracked = false)
         {
             IQueryable<Villa> query;
             if (tracked)
