@@ -11,7 +11,9 @@ namespace WhiteLagoon.Application.Common.Interfaces
     /// </summary>
     public interface IUnitOfWork
     {
-        IRepository VillaRepository { get; }
+        IVillaRepository VillaRepository { get; }
+        IVillaNumberRepository VillaNumberRepository { get; }
+
         /// <summary>
         /// use this instead of dbcontext.SaveChangesAsync()
         /// </summary>
