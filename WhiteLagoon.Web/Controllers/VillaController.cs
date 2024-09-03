@@ -1,26 +1,35 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using WhiteLagoon.Application;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using WhiteLagoon.Application.Common.Interfaces;
 using WhiteLagoon.Domain.Entities;
+using WhiteLagoon.Infrastructure.Data;
 using WhiteLagoon.Web.Models;
 namespace WhiteLagoon.Web.Controllers
-{
+{/*
+    [Route("/Villa")]*/
     public class VillaController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public VillaController(IUnitOfWork unitOfWork)
+        public VillaController(IUnitOfWork unitOfWork
+            , IMapper mapper)
         {
             this._unitOfWork = unitOfWork;
+            this._mapper = mapper;
         }
-
+        [HttpGet]/*
+        [ActionName("Index")]*/
         public async Task<IActionResult> IndexAsync()
         {
-            var viewModel = new VillaIndexViewModel() { villas = await _unitOfWork.VillaRepository.GetAllAsync() };
-            return View(viewModel);
+            var viewModel = _mapper.Map<List<VillaIndexViewModel>>(_unitOfWork.VillaRepository.GetAllAsync().GetAwaiter().GetResult());
+            return View("Index", viewModel);
         }
-
-        public async Task<IActionResult> DeleteAsync(int ID)
+        [HttpDelete]/*
+        [Route("/Villa/Delete/{id}")]*/
+        public async Task<IActionResult> DeleteAsync(/*[FromRoute]*/int id)
         {
+            var ID = id; 
             var villa = await _unitOfWork.VillaRepository.GetAsync(v => v.Id == ID);
             if (villa == null)
             {
@@ -30,33 +39,33 @@ namespace WhiteLagoon.Web.Controllers
             await _unitOfWork.SaveAsync();
             return RedirectToAction("Index");
         }
-
-        public async Task<IActionResult> CreateAsync(VillaCreateViewModel viewModel)
+        [HttpPost]
+        public async Task<IActionResult> CreateAsync([FromBody]VillaCreateViewModel viewModel)
         {
             if (viewModel == null)
             {
                 throw new ArgumentNullException();
             }
-            if (viewModel.villa == null)
+            if (viewModel.Name == null)
             {
                 throw new NullReferenceException();
             }
-            await _unitOfWork.VillaRepository.AddAsync(viewModel.villa);
+            await _unitOfWork.VillaRepository.AddAsync(_mapper.Map<Villa>(viewModel));
             await _unitOfWork.SaveAsync();
             return RedirectToAction("Index");
         }
-
-        public async Task<IActionResult> UpdateAsync(VillaUpdateViewModel viewModel)
+        [HttpPut]
+        public async Task<IActionResult> UpdateAsync([FromBody]VillaUpdateViewModel viewModel)
         {
             if (viewModel == null)
             {
                 throw new ArgumentNullException();
             }
-            if(viewModel.villa.Id == 0 || viewModel.villa.Name == null || viewModel.villa.Description == null)
+            if(viewModel.Id == 0 || viewModel.Name == null || viewModel.Description == null)
             {
                 throw new NullReferenceException();
             }
-            await _unitOfWork.VillaRepository.UpdateAsync(viewModel.villa);
+            await _unitOfWork.VillaRepository.UpdateAsync(_mapper.Map<Villa>(viewModel));
             await _unitOfWork.SaveAsync();
             return RedirectToAction("Index");
         }

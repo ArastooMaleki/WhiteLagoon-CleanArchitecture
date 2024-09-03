@@ -15,9 +15,7 @@ namespace WhiteLagoon.Domain.Entities
         public string Name { get; set; }
         [Required]
         public string? Description { get; set; }
-        [Range(50,1000)]
         public double Price { get; set; }
-        [Range(90,9000)]
         public int Sqft { get; set; }
         public int Occupancy { get; set; }
         public string? ImageUrl { get; set; }

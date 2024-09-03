@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WhiteLagoon.Application
+namespace WhiteLagoon.Application.Common.Interfaces
 {
     /// <summary>
     /// aggregate all the repositry to gether 
     /// </summary>
     public interface IUnitOfWork
     {
-        IVillaRepository VillaRepository { get;}
+        IRepository VillaRepository { get; }
         /// <summary>
         /// use this instead of dbcontext.SaveChangesAsync()
         /// </summary>

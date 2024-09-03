@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhiteLagoon.Application", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhiteLagoon.Infrastructure", "WhiteLagoon.Infrastructure\WhiteLagoon.Infrastructure.csproj", "{63BC3D18-C6AC-484F-839D-7CEE4CF75850}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhiteLagoon.Tests", "WhiteLagoon.Tests\WhiteLagoon.Tests.csproj", "{9570B4B5-9E67-4BDE-89C4-68D934D013B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhiteLagoon.Tests", "WhiteLagoon.Tests\WhiteLagoon.Tests.csproj", "{9570B4B5-9E67-4BDE-89C4-68D934D013B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

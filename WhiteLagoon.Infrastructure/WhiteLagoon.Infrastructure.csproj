@@ -18,7 +18,7 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\WhiteLagoon.Domain\WhiteLagoon.Domain.csproj" />
+	  <ProjectReference Include="..\WhiteLagoon.Application\WhiteLagoon.Application.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WhiteLagoon.Domain.Entities;
+using WhiteLagoon.Infrastructure.Data.CustomSettings;
 
 namespace WhiteLagoon.Infrastructure.Data
 {
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
     {
         public DbSet<Villa> Villas { get; set; }
-
+        public DbSet<VillaNumber> VillaNumbers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -48,6 +49,7 @@ namespace WhiteLagoon.Infrastructure.Data
             Price = 400,
             Sqft = 750,
             });
+            new VillaNumberConfiguration().Configure(modelBuilder.Entity<VillaNumber>());
         }
     }
 }

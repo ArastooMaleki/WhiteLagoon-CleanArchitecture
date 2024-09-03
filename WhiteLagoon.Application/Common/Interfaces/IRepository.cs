@@ -2,24 +2,24 @@
 using System.Linq.Expressions;
 using WhiteLagoon.Domain.Entities;
 
-namespace WhiteLagoon.Application
+namespace WhiteLagoon.Application.Common.Interfaces
 {
     /// <summary>
     /// villa repo
     /// </summary>
-    public interface IVillaRepository
+    public interface IRepository
     {
         /// <summary>
         /// returns all the existing villas 
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<Villa>> GetAllAsync(Expression<Func<Villa,bool>>? filter = null ,bool tracked = false);
+        Task<IEnumerable<Villa>> GetAllAsync(Expression<Func<Villa, bool>>? filter = null, bool tracked = false);
         /// <summary>
         /// return a speciall villa witch match the filter 
         /// </summary>
         /// <param name="filter">a lambda expresion represent the proper filter</param>
         /// <returns>a villa according to fillter</returns>
-        Task<Villa?>? GetAsync(Expression<Func<Villa, bool>>? filter = null, bool tracked = false );
+        Task<Villa?>? GetAsync(Expression<Func<Villa, bool>>? filter = null, bool tracked = false);
         /// <summary>
         /// will delete the data
         /// </summary>
