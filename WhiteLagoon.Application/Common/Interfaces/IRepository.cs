@@ -1,13 +1,10 @@
-﻿using System;
-using System.Linq.Expressions;
-using WhiteLagoon.Domain.Entities;
-
+﻿using System.Linq.Expressions;
 namespace WhiteLagoon.Application.Common.Interfaces
 {
     /// <summary>
     /// villa repo
     /// </summary>
-    public interface IRepository
+    public interface IRepository<Villa> where Villa : class
     {
         /// <summary>
         /// returns all the existing villas 
